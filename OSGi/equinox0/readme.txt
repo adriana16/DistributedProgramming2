@@ -1,0 +1,1 @@
+Se completeaza cu fisierele din equinox-jars

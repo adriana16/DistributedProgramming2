@@ -1,0 +1,1 @@
+Se sterge catalogul test

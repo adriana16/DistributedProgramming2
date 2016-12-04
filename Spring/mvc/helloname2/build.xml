@@ -1,0 +1,41 @@
+<project name="SpringMVC" default="Archive" basedir=".">
+  <description>  Spring3 </description>
+  
+  <!-- set global properties for this build.dir -->
+  <property name="dist.dir" location="dist"/>
+  <property name="dist.name" value="helloname"/>
+  <property name="tomcat" location="e:\JavaApp\apache-tomcat-8.0.33"/>
+  
+  <path id="myclasspath">
+    <fileset dir="war/WEB-INF/lib">
+       <include name="*.jar"/>
+    </fileset> 
+    <pathelement path="${tomcat}/lib/servlet-api.jar"/>
+    <pathelement path="${build.dir}"/>
+  </path>  
+  
+  <target name="Init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build.dir directory structure used by compile -->
+    <delete dir="${dist.dir}"/>
+    <delete dir="war/WEB-INF/classes"/>
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="war/WEB-INF/classes"/>
+  </target>
+
+  <target name="Compile" depends="Init">
+    <javac srcdir="src" destdir="war/WEB-INF/classes" 
+       classpathref="myclasspath"  includeantruntime="false"/>
+  </target>
+
+  <target name="Archive" depends="Compile"> 
+    <jar destfile="${dist.dir}/${dist.name}.war" basedir="war" /> 
+  </target>
+
+</project>
+
+
+
+
+
